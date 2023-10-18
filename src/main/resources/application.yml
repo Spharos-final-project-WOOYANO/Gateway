@@ -1,0 +1,60 @@
+server:
+  port: 8000
+
+spring:
+  application:
+    name: EUREKA-GATEWAY
+  cloud:
+    gateway:
+      httpclient:
+        connect-timeout: 50000
+        response-timeout: 50000
+
+        default-filters:
+          - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials
+        globalcors:
+          cors-configurations:
+            '[/**]':
+              allowedOrigins:
+                - 'http://localhost:3000'
+              allow-credentials: true
+              allowedHeaders: '*'
+              allowedMethods:
+                - PUT
+                - GET
+                - POST
+                - DELETE
+                - PATCH
+                - OPTIONS
+        routes:
+          - id: user-service
+            uri: lb://USER-SERVICE
+            predicates:
+              - Path=/api/v1/users/**
+          - id: client-service
+            uri: lb://CLIENT-SERVICE
+            predicates:
+              - Path=/api/v1/client/**
+          - id: payment-service
+            uri: lb://PAYMENT-SERVICE
+            predicates:
+              - Path=/api/v1/payment/**
+          - id: reservation-service
+            uri: lb://RESERVATION-SERVICE
+            predicates:
+              - Path=/api/v1/reservation/**
+          - id: admin-service
+            uri: lb://ADMIN-SERVICE
+            predicates:
+              - Path=/api/v1/admin/**
+          - id : review_bookmark
+            uri: lb://REVIEW_BOOKMARK-SERVICE
+            predicates:
+              - Path=/api/v1/review_bookmark/**
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://172.20.0.2:8761/eureka/
+
