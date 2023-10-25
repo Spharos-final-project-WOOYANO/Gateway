@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: EUREKA-GATEWAY
+    name: eureka-gateway
   cloud:
     gateway:
       httpclient:
@@ -27,31 +27,31 @@ spring:
                 - PATCH
                 - OPTIONS
       routes:
-        - id: USER-SERVICE
+        - id: user-service
           uri: lb://USER-SERVICE
           predicates:
             - Path=/api/v1/users/**
-        - id: CLIENT-SERVICE
+        - id: client-service
           uri: lb://CLIENT-SERVICE
           predicates:
             - Path=/api/v1/client/**
-        - id: PAYMENT-SERVICE
+        - id: payment-service
           uri: lb://PAYMENT-SERVICE
           predicates:
             - Path=/api/v1/payment/**
-        - id: RESERVATION-SERVICE
+        - id: reservation-service
           uri: lb://RESERVATION-SERVICE
           predicates:
             - Path=/api/v1/reservation/**
-        - id: ADMIN-SERVICE
+        - id: admin-service
           uri: lb://ADMIN-SERVICE
           predicates:
             - Path=/api/v1/admin/**
-        - id : REVIEW-BOOKMARK-SERVICE
+        - id : review-bookmark-service
           uri: lb://REVIEW-BOOKMARK-SERVICE
           predicates:
             - Path=/api/v1/review-bookmark/**
-        - id : SETTLE-SERVICE
+        - id : settle-service
           uri : lb://SETTLE-SERVICE
           predicates:
             - Path=/api/v1/settle/**
