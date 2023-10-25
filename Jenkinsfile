@@ -4,13 +4,13 @@ pipeline {
     stages {
         stage('Check') {
             steps {
-                git branch: 'develop',credentialsId:'0-shingo', url:'https://github.com/Spharos-final-project-WOOYANO/Gateway'
+                git branch: 'develop',credentialsId:'jenkins-github-access-token', url:'https://github.com/Spharos-final-project-WOOYANO/Gateway'
             }
         }
         stage('Build'){
             steps{
                 sh '''
-                    cd Gateway
+                    pwd
                     chmod +x ./gradlew
                     ./gradlew build -x test
                 '''
@@ -19,7 +19,6 @@ pipeline {
         stage('DockerSize'){
             steps {
                 sh '''
-                    cd server
                     docker stop Eureka-Gateway || true
                     docker rm Eureka-Gateway || true
                     docker rmi Eureka-Gateway-Img || true
