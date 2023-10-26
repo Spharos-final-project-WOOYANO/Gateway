@@ -28,7 +28,7 @@ pipeline {
         }
         stage('Deploy'){
             steps{
-                sh 'docker run -d --name eureka-gateway -p 8000:8000 eureka-gateway-img'
+                sh 'docker run -d --name eureka-gateway -p 8080:8000 eureka-gateway-img'
             }
         }
     }
