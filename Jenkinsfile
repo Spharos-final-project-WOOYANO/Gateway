@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Check') {
             steps {
-                git branch: 'develop',credentialsId:'jenkins-github-access-token', url:'https://github.com/Spharos-final-project-WOOYANO/Gateway'
+                git branch: 'develop',credentialsId:'git-hook-PAT', url:'https://github.com/Spharos-final-project-WOOYANO/Gateway'
             }
         }
         stage('Build'){
@@ -19,16 +19,16 @@ pipeline {
         stage('DockerSize'){
             steps {
                 sh '''
-                    docker stop Eureka-Gateway || true
-                    docker rm Eureka-Gateway || true
-                    docker rmi Eureka-Gateway-Img || true
-                    docker build -t Eureka-Gateway-Img:latest .
+                    docker stop eureka-gateway || true
+                    docker rm eureka-gateway || true
+                    docker rmi eureka-gateway-img || true
+                    docker build -t eureka-gateway-img:latest .
                 '''
             }
         }
         stage('Deploy'){
             steps{
-                sh 'docker run -d --name Eureka-Gateway -p 8080:8000 Eureka-Gateway-Img'
+                sh 'docker run -d --name eureka-gateway -p 8080:8000 eureka-gateway-Img'
             }
         }
     }
