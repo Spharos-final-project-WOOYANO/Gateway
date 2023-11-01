@@ -9,10 +9,10 @@ pipeline {
 	stage('Gateway-Secret-File Download'){
 	    steps{
 		withCredentials([
-		    file(credentialsId: 'Gateway-Secret-File', variable: 'gatewaySecret')
+		    file(credentialsId: 'Gateway-Secret-File', variable: 'gatewaysecret')
 		])
 	        {
-	            sh "cp \$gatewaySecret ./src/main/resources/application-secret.yml"
+	            sh "cp \$gatewaysecret ./src/main/resources/application-secret.yml"
 	    	}
 	    }
 	}
@@ -29,20 +29,15 @@ pipeline {
                     
             }
         }
-        stage('DockerSize'){
+        stage('Deploy'){
             steps {
                 sh '''
-                    docker stop gatway || true
+                    docker stop gateway || true
                     docker rm gateway || true
                     docker rmi gateway-img || true
                     docker build -t gateway-img:latest .
+		    docker run --network spharos-network -d --name gateway gateway-img
                 '''
-            }
-        }
-        stage('Deploy'){
-            steps{
-                sh 'docker run --network spharos-network -d --name gateway -p 8000:8000 gateway-img'
-
             }
         }
     }
