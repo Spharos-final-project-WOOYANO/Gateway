@@ -11,8 +11,9 @@ pipeline {
 		withCredentials([
 		    file(credentialsId: 'Gateway-Secret-File', variable: 'gateway-secret')
 		])
-	    {
-	    	sh "cp \$gateway-secret ./src/main/resources/application-secret.yml"
+	        {
+	            sh "cp \$gateway-secret ./src/main/resources/application-secret.yml"
+	    	}
 	    }
 	}
         stage('Build'){
