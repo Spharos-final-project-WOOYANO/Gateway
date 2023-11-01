@@ -9,10 +9,10 @@ pipeline {
 	stage('Gateway-Secret-File Download'){
 	    steps{
 		withCredentials([
-		    file(credentialsId: 'Gateway-Secret-File', variable: 'gateway-secret')
+		    file(credentialsId: 'Gateway-Secret-File', variable: 'gatewaySecret')
 		])
 	        {
-	            sh "cp \$gateway-secret ./src/main/resources/application-secret.yml"
+	            sh "cp \$gatewaySecret ./src/main/resources/application-secret.yml"
 	    	}
 	    }
 	}
@@ -41,7 +41,7 @@ pipeline {
         }
         stage('Deploy'){
             steps{
-                sh 'docker run -d --name gateway -p 8761:8000 gateway-img'
+                sh 'docker run --network spahros-network -d --name gateway -p 8000:8000 gateway-img'
             }
         }
     }
