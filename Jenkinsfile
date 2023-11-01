@@ -8,9 +8,9 @@ pipeline {
         }
 	stage('Gateway-Secret-File Download'){
 	    steps{
-	    withCredentials([
-	    file(credentialsId: 'Gateway-Secret-File' variable: 'gateway-secret')
-	    ])
+		withCredentials([
+		    file(credentialsId: 'Gateway-Secret-File', variable: 'gateway-secret')
+		])
 	    {
 	    	sh "cp \$gateway-secret ./src/main/resources/application-secret.yml"
 	    }
