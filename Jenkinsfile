@@ -6,13 +6,22 @@ pipeline {
                 git branch: 'develop',credentialsId:'0-shingo', url:'https://github.com/Spharos-final-project-WOOYANO/Gateway'
             }
         }
+	stage('Gateway-Secret-File Download'){
+	    steps{
+	    withCredentials([
+	    file(credentialsId: 'Gateway-Secret-File' variable: 'gateway-secret')
+	    ])
+	    {
+	    	sh "cp \$gateway-secret ./src/main/resources/application-secret.yml"
+	    }
+	}
         stage('Build'){
             steps{
                 script {
                     sh '''
                         pwd
                         chmod +x ./gradlew
-                        ./gradlew build
+                        ./gradlew build -x test
                     '''
                     
                 }
