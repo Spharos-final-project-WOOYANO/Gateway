@@ -29,7 +29,20 @@ pipeline {
                     
             }
         }
+        stage('DockerSize'){
+            steps {
+	    	script {
+		
+                sh '''
+                    docker stop eureka-gateway || true
+                    docker rm eureka-gateway || true
+                    docker rmi gateway-img || true
+                    docker build -t gateway-img:latest .
+                '''
+		}
 
+            }
+        }
         stage('Deploy'){
             steps{
                 sh 'docker run --network spharos-network -d --name eureka-gateway -p 8000:8000 gateway-img'
