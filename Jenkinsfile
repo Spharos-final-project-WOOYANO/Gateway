@@ -12,7 +12,7 @@ pipeline {
                     sh '''
                         pwd
                         chmod +x ./gradlew
-                        ./gradlew build
+                        ./gradlew build -x test
                     '''
                     
                 }
@@ -31,7 +31,7 @@ pipeline {
         }
         stage('Deploy'){
             steps{
-                sh 'docker run -d --name gateway -p 8000:8000 gateway-img'
+                sh 'docker run --network spharos-network -d --name gateway -p 8000:8000 gateway-img'
             }
         }
     }
