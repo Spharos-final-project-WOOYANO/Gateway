@@ -42,6 +42,7 @@ pipeline {
         stage('Deploy'){
             steps{
                 sh 'docker run --network spahros-network -d --name gateway -p 8000:8000 gateway-img'
+
             }
         }
     }
