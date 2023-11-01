@@ -32,8 +32,8 @@ pipeline {
         stage('DockerSize'){
             steps {
                 sh '''
-                    docker stop gatway || true
-                    docker rm gateway || true
+                    docker stop eureka-gatway || true
+                    docker rm eureka-gateway || true
                     docker rmi gateway-img || true
                     docker build -t gateway-img:latest .
                 '''
@@ -41,7 +41,7 @@ pipeline {
         }
         stage('Deploy'){
             steps{
-                sh 'docker run --network spharos-network -d --name gateway -p 8000:8000 gateway-img'
+                sh 'docker run --network spharos-network -d --name eureka-gateway -p 8000:8000 gateway-img'
 
             }
         }
