@@ -30,10 +30,8 @@ public class GatewayApplication {
 		// + 클라이언트에서 접근할수 있고 노출시킬 헤더를 설정
 		corsConfiguration.addExposedHeader("*");
 		//↓ addAllowedOriginPattern과는 다르게 접근을 허용할 특정 origin을 명시적으로 지정한다.
-		corsConfiguration.addAllowedOrigin("https://3.35.62.185:8000");
-		corsConfiguration.addAllowedOrigin("http://localhost:8000");
-		corsConfiguration.addAllowedOrigin("http://localhost:8000/api/v1/client/**");
-//		corsConfiguration.addAllowedOrigin("http://15.165.198.145");
+		//↓ localhost:3000에서 오는 요청을 허용한다.
+		corsConfiguration.addAllowedOrigin("http://localhost:3000");
 		//↓GET,POST...등등 허용할 HTTP method를 설정한다.
 		corsConfiguration.addAllowedMethod("*");
 		//↓자격증명 설정
