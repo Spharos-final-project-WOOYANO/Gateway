@@ -14,7 +14,7 @@ import org.springframework.http.server.reactive.ServerHttpResponse;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
-
+//User서비스의 SecurityConcifg파일을 여기로 옮겨옴
 @Component
 @Slf4j
 public class AuthorizationUserHeaderFilter extends
