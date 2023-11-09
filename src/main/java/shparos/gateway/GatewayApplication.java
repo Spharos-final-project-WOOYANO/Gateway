@@ -32,9 +32,7 @@ public class GatewayApplication {
         //↓ addAllowedOriginPattern과는 다르게 접근을 허용할 특정 origin을 명시적으로 지정한다.
         //↓ localhost:3000에서 오는 요청을 허용한다.
         corsConfiguration.addAllowedOrigin("http://localhost:3000");
-        corsConfiguration.addAllowedOrigin("http://10.10.10.40:3000");
-        //↓GET,POST...등등 허용할 HTTP method를 설정한다.
-        corsConfiguration.addAllowedMethod("*");
+        corsConfiguration.addAllowedMethod("GET, POST, PUT, DELETE, OPTIONS");
         //↓자격증명 설정
         corsConfiguration.setAllowCredentials(true);
         //↓모든 경로(/**)에 대해 CORS구성을 적용한다.
