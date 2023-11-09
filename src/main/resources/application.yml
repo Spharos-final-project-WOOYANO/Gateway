@@ -5,5 +5,5 @@ spring:
   application:
     name: eureka-gateway
   profiles:
-    default: local
+    default: secret
 
