@@ -33,6 +33,7 @@ public class AuthorizationUserHeaderFilter extends AbstractGatewayFilterFactory<
     @Override
     public GatewayFilter apply(Config config) {
         return ((exchange, chain) -> {
+            //현재 들어온 요청을 get으로 가져와서 request변수에 초기화
             ServerHttpRequest request = exchange.getRequest();
 
             // 만약 요청 헤더에 'Authorization' 헤더가 없다면 JWT_NOT_EXIST 에러를 반환
