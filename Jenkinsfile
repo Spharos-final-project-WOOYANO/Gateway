@@ -45,7 +45,7 @@ pipeline {
         }
         stage('Deploy'){
             steps{
-                sh 'docker run --network spharos-network -e EUREKA_URL="${EUREKA_URL}"-d --name eureka-gateway -p 8000:8000 gateway-img'
+                sh 'docker run --network spharos-network -e EUREKA_URL="${EUREKA_URL}" -d --name eureka-gateway -p 8000:8000 gateway-img'
 
             }
         }
