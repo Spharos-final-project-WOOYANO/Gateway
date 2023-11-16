@@ -34,8 +34,8 @@ pipeline {
 	    	script {
 		
                 sh '''
-                    docker stop eureka-gateway || true
-                    docker rm eureka-gateway || true
+                    docker stop gateway || true
+                    docker rm gateway || true
                     docker rmi gateway-img || true
                     docker build -t gateway-img:latest .
                 '''
@@ -45,7 +45,7 @@ pipeline {
         }
         stage('Deploy'){
             steps{
-                sh 'docker run --network spharos-network --restart=always -e EUREKA_URL="${EUREKA_URL}" -d --name eureka-gateway -p 8000:8000 gateway-img'
+                sh 'docker run --network spharos-network --restart=always -e EUREKA_URL="${EUREKA_URL}" -d --name gateway -p 8000:8000 gateway-img'
 
             }
         }
