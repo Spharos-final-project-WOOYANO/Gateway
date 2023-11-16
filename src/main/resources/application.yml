@@ -2,7 +2,7 @@ server:
   port: 8000
 spring:
   application:
-    name: eureka-gateway
+    name: gateway
   profiles:
     default: secret
 

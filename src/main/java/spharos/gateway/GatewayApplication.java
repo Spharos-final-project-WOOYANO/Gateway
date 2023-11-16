@@ -1,4 +1,4 @@
-package shparos.gateway;
+package spharos.gateway;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

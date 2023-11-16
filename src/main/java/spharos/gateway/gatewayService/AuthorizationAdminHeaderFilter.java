@@ -1,4 +1,4 @@
-package shparos.gateway.gatewayService;
+package spharos.gateway.gatewayService;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
