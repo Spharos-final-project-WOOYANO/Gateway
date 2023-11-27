@@ -25,6 +25,7 @@ public class GatewayApplication {
         corsConfiguration.addAllowedHeader("*");
         corsConfiguration.addExposedHeader("*");
         corsConfiguration.addAllowedOrigin("http://localhost:3000");
+        corsConfiguration.addAllowedOrigin("https://wooyano-user.vercel.app");
         corsConfiguration.addAllowedMethod("*");
         corsConfiguration.setAllowCredentials(true);
         source.registerCorsConfiguration("/**", corsConfiguration);
